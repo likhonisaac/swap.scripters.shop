@@ -24,7 +24,13 @@
         </button>
         <p id="wallet-status" class="status-message"></p>
     </header>
-
+    <div id="connect"></div>
+    <script>
+        const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+            manifestUrl: 'https://swap.scripters.shop/tonconnect-manifest.json',
+            buttonRootId: "connect"
+        });
+    </script>
     <main class="products-container">
         <h2>Available Products</h2>
         <div class="products-grid" id="products"></div>
