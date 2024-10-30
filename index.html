@@ -179,29 +179,6 @@
             text-decoration: none;
         }
 
-        /* Related Topics */
-        .related-topics {
-            margin: 2rem 0;
-            padding: 1rem;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-        }
-
-        .related-topics h3 {
-            margin-bottom: 1rem;
-            color: var(--text-color);
-        }
-
-        .related-topics ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .related-topics li {
-            margin-bottom: 0.5rem;
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
             .banner h1 {
@@ -238,14 +215,6 @@
         <div class="products-grid" id="products"></div>
     </main>
 
-    <!-- Related Topics Section -->
-    <section class="related-topics">
-        <h3>Explore More Topics:</h3>
-        <ul id="related-topics-list">
-            <!-- Dynamic links to generated SEO pages will be inserted here -->
-        </ul>
-    </section>
-
     <!-- Footer -->
     <footer class="footer">
         <p>&copy; 2024 Crypto Tools Hub. All rights reserved.</p>
@@ -257,55 +226,45 @@
             { id: 1, name: "Bitcoin Flash Tool V6.5.1", price: 250, image: "https://storage.sell.app/store/49175/listings/hs9KNLIrVKmiqK9GExzjpk5vwbuWfV2th7Iq6YAn.jpg", stock: "∞" },
             { id: 2, name: "Flash Miner for Windows", price: 100, image: "https://storage.sell.app/store/49175/listings/5jHYcH7r0Pcr1Pp8yjWlSNHLdM7bl9yystNCuCQO.webp", stock: "∞" },
             { id: 3, name: "Flash USDT Full Package", price: 300, image: "https://storage.sell.app/store/49175/listings/kcdSyWdCFmRyYU86U7CqDyUO9oCk9JYWYzVvyXID.png", stock: "∞" },
-            { id: 4, name: "Real USDT Sender", price: 250, image: "https://storage.sell.app/store/49175/listings/c01sS76Of9OXZhH3qROTEoHJSkrrh40ybX9vPSo4.jpg", stock: "∞" }
+            { id: 4, name: "Real USDT Sender", price: 250, image: "https://storage.sell.app/store/49175/listings/c01sS76Of9OXZhH3qROTEGyzFH81Rnjk8dQ1Bbf6.webp", stock: "∞" },
+            { id: 5, name: "Fake USDT Sender [APK]", price: 600, image: "https://storage.sell.app/store/49175/listings/Ke9rDCgH7bTSniVhnXeiwChgejhASyfx4DjJzFdO.jpg", stock: "500" },
+            { id: 6, name: "Flash Miner Pro", price: 50, image: "https://storage.sell.app/store/49175/listings/dbaeCoLGZCX2h1OkHLIF92hG47YbYEo8mHVo6xpS.png", stock: "∞" },
         ];
 
-        // Function to render products
         function renderProducts() {
-            const productsContainer = document.getElementById('products');
-            products.forEach(product => {
-                const productCard = document.createElement('div');
-                productCard.className = 'product-card';
-                productCard.innerHTML = `
+            const productsGrid = document.getElementById('products');
+            productsGrid.innerHTML = products.map(product => `
+                <div class="product-card">
                     <img src="${product.image}" alt="${product.name}" class="product-image">
                     <div class="product-details">
                         <h3 class="product-title">${product.name}</h3>
                         <p class="product-price">$${product.price}</p>
-                        <button class="buy-button">Buy Now</button>
+                        <button class="buy-button" onclick="buyProduct(${product.id})">
+                            <i class="fas fa-shopping-cart"></i> Buy Now
+                        </button>
                     </div>
-                `;
-                productsContainer.appendChild(productCard);
-            });
+                </div>
+            `).join('');
         }
 
-        // Function to add related topics dynamically
-        function renderRelatedTopics() {
-            const topicsContainer = document.getElementById('related-topics-list');
-            const topics = [
-                { title: 'Crypto Security Best Practices', url: '/crypto-security-best-practices.html' },
-                { title: 'Understanding Blockchain Technology', url: '/understanding-blockchain-technology.html' },
-                { title: 'Latest Trends in Cryptocurrency', url: '/latest-trends-in-cryptocurrency.html' },
-                { title: 'Smart Contracts Explained', url: '/smart-contracts-explained.html' },
-                { title: 'NFTs: The Future of Digital Ownership', url: '/nfts-the-future-of-digital-ownership.html' }
-            ];
-
-            topics.forEach(topic => {
-                const listItem = document.createElement('li');
-                listItem.innerHTML = `<a href="${topic.url}">${topic.title}</a>`;
-                topicsContainer.appendChild(listItem);
-            });
+        async function connectWallet() {
+            if (window.ethereum) {
+                try {
+                    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                    alert(`Wallet connected: ${accounts[0]}`);
+                } catch (error) {
+                    console.error("Wallet connection error:", error);
+                }
+            } else {
+                alert("MetaMask not detected. Please install it to connect your wallet.");
+            }
         }
 
-        // Connect Wallet function placeholder
-        function connectWallet() {
-            console.log("Connect Wallet button clicked");
+        function buyProduct(id) {
+            alert(`Initiating purchase for product ID: ${id}`);
         }
 
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            renderProducts();
-            renderRelatedTopics();
-        });
+        document.addEventListener('DOMContentLoaded', renderProducts);
     </script>
 </body>
 
