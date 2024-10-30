@@ -1,200 +1,412 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Exclusive crypto tools for secure transactions. Buy Bitcoin Flash Tool, Flash Miner, USDT Sender, and more. Connect your wallet and buy now.">
-    <title>Crypto Tools Shop - Flash Tools and USDT Senders</title>
-
-    <!-- Preload images -->
-    <link rel="preload" as="image" href="https://storage.sell.app/store/49175/listings/5jHYcH7r0Pcr1Pp8yjWlSNHLdM7bl9yystNCuCQO.webp" />
-    <link rel="preload" as="image" href="https://storage.sell.app/store/49175/listings/kcdSyWdCFmRyYU86U7CqDyUO9oCk9JYWYzVvyXID.png" />
-    <link rel="preload" as="image" href="https://storage.sell.app/store/49175/listings/c01sS76Of9OXZhH3qROTEGyzFH81Rnjk8dQ1Bbf6.webp" />
-    <link rel="preload" as="image" href="https://storage.sell.app/store/49175/listings/Ke9rDCgH7bTSniVhnXeiwChgejhASyfx4DjJzFdO.jpg" />
-    <link rel="preload" as="image" href="https://storage.sell.app/store/49175/listings/dbaeCoLGZCX2h1OkHLIF92hG47YbYEo8mHVo6xpS.png" />
-
-    <link rel="stylesheet" href="styles.css">
+    <title>Crypto Tools Shop - Premium Flash Tools</title>
+    
+    <!-- Preload critical assets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
-    <link rel="canonical" href="https://scripters.shop/" />
+
+    <style>
+        :root {
+            --primary-color: #007BFF;
+            --secondary-color: #6c757d;
+            --dark-bg: #0D1321;
+            --light-bg: #f8f9fa;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --header-height: 70px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            background-color: var(--light-bg);
+            color: #333;
+        }
+
+        /* Header Styles */
+        .header {
+            background: var(--dark-bg);
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        /* Banner Styles */
+        .banner {
+            margin-top: var(--header-height);
+            background: linear-gradient(135deg, var(--dark-bg), #1a237e);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .banner h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .banner p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Products Grid */
+        .products-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .product-details {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .product-stock {
+            color: var(--success-color);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .buy-button {
+            width: 100%;
+            padding: 0.8rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .buy-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Promo Section */
+        .promo-section {
+            background: #ffeb3b;
+            padding: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .promo-section h2 {
+            color: var(--dark-bg);
+            margin-bottom: 1rem;
+        }
+
+        .promo-code {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 1rem 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        .footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        /* Loading Spinner */
+        .loading-spinner {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            z-index: 1000;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-menu {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .banner h1 {
+                font-size: 2rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <header>
-        <h1>Crypto Tools Shop</h1>
-        <p>Exclusive discount for crypto lovers!</p>
-        <nav>
-            <a href="#products">Products</a>
-            <a href="#support">Support</a>
-            <a href="https://t.me/ScriptsChats" target="_blank">Telegram</a>
-        </nav>
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">CryptoToolsShop</div>
+            <nav class="nav-menu">
+                <a href="#products" class="nav-link">Products</a>
+                <a href="#support" class="nav-link">Support</a>
+                <a href="https://t.me/ScriptsChats" class="nav-link" target="_blank">
+                    <i class="fab fa-telegram"></i> Telegram
+                </a>
+            </nav>
+        </div>
     </header>
 
-    <section id="products">
-        <h2>Products</h2>
-
-        <!-- Product Listings -->
-        <div class="product-list">
-            <div class="product" onclick="buyProduct(250, 'Bitcoin Flash Tool V6.5.1')">
-                <img src="https://storage.sell.app/store/49175/listings/hs9KNLIrVKmiqK9GExzjpk5vwbuWfV2th7Iq6YAn.jpg" alt="Bitcoin Flash Tool V6.5.1" />
-                <h3>Bitcoin Flash Tool V6.5.1</h3>
-                <p class="price">$250.00</p>
-                <p>∞ in stock</p>
-            </div>
-            <div class="product" onclick="buyProduct(100, 'Flash Miner for Windows')">
-                <img src="https://storage.sell.app/store/49175/listings/5jHYcH7r0Pcr1Pp8yjWlSNHLdM7bl9yystNCuCQO.webp" alt="Flash Miner for Windows" />
-                <h3>Flash Miner for Windows</h3>
-                <p class="price">$100.00</p>
-                <p>∞ in stock</p>
-            </div>
-            <div class="product" onclick="buyProduct(300, 'Flash USDT Full Package')">
-                <img src="https://storage.sell.app/store/49175/listings/kcdSyWdCFmRyYU86U7CqDyUO9oCk9JYWYzVvyXID.png" alt="Flash USDT Full Package" />
-                <h3>Flash USDT Full Package</h3>
-                <p class="price">$300.00</p>
-                <p>∞ in stock</p>
-            </div>
-            <div class="product" onclick="buyProduct(250, 'Real USDT Sender')">
-                <img src="https://storage.sell.app/store/49175/listings/c01sS76Of9OXZhH3qROTEGyzFH81Rnjk8dQ1Bbf6.webp" alt="Real USDT Sender" />
-                <h3>Real USDT Sender</h3>
-                <p class="price">$250.00</p>
-                <p>∞ in stock</p>
-            </div>
-            <div class="product" onclick="buyProduct(600, 'Fake USDT Sender [APK]')">
-                <img src="https://storage.sell.app/store/49175/listings/Ke9rDCgH7bTSniVhnXeiwChgejhASyfx4DjJzFdO.jpg" alt="Fake USDT Sender [APK]" />
-                <h3>Fake USDT Sender [APK]</h3>
-                <p class="price">$600.00</p>
-                <p>500 in stock</p>
-            </div>
-            <div class="product" onclick="buyProduct(50, 'Flash Miner Pro')">
-                <img src="https://storage.sell.app/store/49175/listings/dbaeCoLGZCX2h1OkHLIF92hG47YbYEo8mHVo6xpS.png" alt="Flash Miner Pro" />
-                <h3>Flash Miner Pro</h3>
-                <p class="price">$50.00</p>
-                <p>∞ in stock</p>
-            </div>
-        </div>
+    <section class="banner">
+        <h1>Premium Crypto Tools</h1>
+        <p>Exclusive software solutions for crypto professionals</p>
+        <button class="buy-button" onclick="connectWallet()">
+            <i class="fas fa-wallet"></i> Connect Wallet
+        </button>
     </section>
 
-    <section id="promo" style="background-color: #ffeb3b; padding: 20px; text-align: center;">
+    <section class="promo-section">
         <h2>🎉 Special Offer Alert! 🎉</h2>
-        <p>Use Coupon Code: <strong>Scripters-Wishper</strong></p>
-        <p>🤑 Get $50 OFF on the latest version of the Bitcoin Flash Tool V6.5.1!</p>
-        <p>👉 Act fast! Limited time offer!</p>
-        <a href="#products" class="cta-button">Shop Now!</a>
+        <p>Use Coupon Code:</p>
+        <div class="promo-code">Scripters-Wishper</div>
+        <p>🤑 Get $50 OFF on Bitcoin Flash Tool V6.5.1!</p>
+        <p>👉 Limited time offer - Act now!</p>
     </section>
 
-    <footer>
+    <main class="products-container">
+        <div class="products-grid" id="products"></div>
+    </main>
+
+    <footer class="footer">
         <p>&copy; 2024 Crypto Tools Shop. All rights reserved.</p>
-        <p>🚀 Premium software for crypto pros. <br> Visit us: <a href="https://scripters.shop" target="_blank">scripters.shop</a></p>
+        <p>🚀 Premium software for crypto pros</p>
+        <p>Visit us: <a href="https://scripters.shop" target="_blank">scripters.shop</a></p>
         <p>📩 Support: <a href="https://t.me/likhondev" target="_blank">@likhondev</a></p>
     </footer>
 
+    <div class="loading-spinner" id="loadingSpinner">
+        <i class="fas fa-spinner fa-spin"></i> Processing Transaction...
+    </div>
+
     <script>
-        // Connect Wallet
+        // Product data
+        const products = [
+            {
+                id: 1,
+                name: "Bitcoin Flash Tool V6.5.1",
+                price: 250,
+                image: "https://storage.sell.app/store/49175/listings/hs9KNLIrVKmiqK9GExzjpk5vwbuWfV2th7Iq6YAn.jpg",
+                stock: "∞"
+            },
+            {
+                id: 2,
+                name: "Flash Miner for Windows",
+                price: 100,
+                image: "https://storage.sell.app/store/49175/listings/5jHYcH7r0Pcr1Pp8yjWlSNHLdM7bl9yystNCuCQO.webp",
+                stock: "∞"
+            },
+            {
+                id: 3,
+                name: "Flash USDT Full Package",
+                price: 300,
+                image: "https://storage.sell.app/store/49175/listings/kcdSyWdCFmRyYU86U7CqDyUO9oCk9JYWYzVvyXID.png",
+                stock: "∞"
+            },
+            {
+                id: 4,
+                name: "Real USDT Sender",
+                price: 250,
+                image: "https://storage.sell.app/store/49175/listings/c01sS76Of9OXZhH3qROTEGyzFH81Rnjk8dQ1Bbf6.webp",
+                stock: "∞"
+            },
+            {
+                id: 5,
+                name: "Fake USDT Sender [APK]",
+                price: 600,
+                image: "https://storage.sell.app/store/49175/listings/Ke9rDCgH7bTSniVhnXeiwChgejhASyfx4DjJzFdO.jpg",
+                stock: "500"
+            },
+            {
+                id: 6,
+                name: "Flash Miner Pro",
+                price: 50,
+                image: "https://storage.sell.app/store/49175/listings/dbaeCoLGZCX2h1OkHLIF92hG47YbYEo8mHVo6xpS.png",
+                stock: "∞"
+            }
+        ];
+
+        // Initialize Web3
+        let web3;
+        let userAddress;
+
+        // Render products
+        function renderProducts() {
+            const productsGrid = document.getElementById('products');
+            productsGrid.innerHTML = products.map(product => `
+                <div class="product-card">
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-details">
+                        <h3 class="product-title">${product.name}</h3>
+                        <p class="product-price">$${product.price.toFixed(2)}</p>
+                        <p class="product-stock">${product.stock} in stock</p>
+                        <button class="buy-button" onclick="buyProduct(${product.id})">
+                            <i class="fas fa-shopping-cart"></i> Buy Now
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Connect wallet
         async function connectWallet() {
             if (typeof window.ethereum !== 'undefined') {
                 try {
                     const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-                    return accounts[0];
+                    userAddress = accounts[0];
+                    web3 = new Web3(window.ethereum);
+                    alert('Wallet connected successfully!');
                 } catch (error) {
-                    alert('Wallet connection failed');
-                    console.error(error);
+                    console.error('Error connecting wallet:', error);
+                    alert('Failed to connect wallet. Please try again.');
                 }
             } else {
-                alert('MetaMask is required to complete this purchase.');
+                alert('MetaMask is required. Please install it to continue.');
             }
         }
 
-        // Buy Product
-        async function buyProduct(amount, productName) {
-            const userAddress = await connectWallet();
-            const recipientAddress = "0x00fC876d03172279E04CC30E5edCE103c3d23C1A";
-            const web3 = new Web3(window.ethereum);
+        // Buy product
+        async function buyProduct(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
 
-            if (userAddress) {
-                try {
-                    await web3.eth.sendTransaction({
-                        from: userAddress,
-                        to: recipientAddress,
-                        value: web3.utils.toWei(amount.toString(), "ether")
-                    });
-                    alert(`Transaction successful! To receive ${productName}, contact us on Telegram at t.me/ScriptsChats`);
-                } catch (error) {
-                    alert('Transaction failed');
-                    console.error(error);
-                }
+            if (!userAddress) {
+                alert('Please connect your wallet first.');
+                return;
+            }
+
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            loadingSpinner.style.display = 'block';
+
+            try {
+                const recipientAddress = "0x00fC876d03172279E04CC30E5edCE103c3d23C1A";
+                await web3.eth.sendTransaction({
+                    from: userAddress,
+                    to: recipientAddress,
+                    value: web3.utils.toWei(product.price.toString(), "ether")
+                });
+
+                alert(`Transaction successful! To receive ${product.name}, contact us on Telegram at t.me/ScriptsChats`);
+            } catch (error) {
+                console.error('Transaction failed:', error);
+                alert('Transaction failed. Please try again.');
+            } finally {
+                loadingSpinner.style.display = 'none';
             }
         }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+        });
     </script>
-
-    <style>
-        /* Inline styles for simplicity; ideally move to styles.css */
-        body {
-            font-family: Arial, sans-serif;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        header {
-            text-align: center;
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-        }
-        nav a {
-            color: #fff;
-            margin: 0 10px;
-            text-decoration: none;
-        }
-        #products {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-        }
-        .product-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-        }
-        .product {
-            background-color: #0D1321;
-            color: white;
-            border-radius: 8px;
-            padding: 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        .product img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-        .product:hover {
-            transform: scale(1.05);
-        }
-        .price {
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-        .cta-button {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #333;
-            color: white;
-        }
-    </style>
 </body>
-
 </html>
