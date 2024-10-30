@@ -1,13 +1,14 @@
 :root {
-    --primary-color: #FF6700;
-    --secondary-color: #1D1D1F;
-    --background-color: #121212;
-    --accent-color: #08fdd8;
-    --text-color: #e0e0e0;
-    --card-bg: #222222;
-    --border-color: #333;
-    --transition: 0.3s ease;
-    --max-width: 1200px;
+    --primary-color: #FF6700; /* Main action color */
+    --secondary-color: #1D1D1F; /* Dark background for sections */
+    --background-color: #121212; /* Overall background color */
+    --accent-color: #08fdd8; /* Accent color for links and highlights */
+    --text-color: #e0e0e0; /* Default text color */
+    --card-bg: #222222; /* Background for cards */
+    --border-color: #333; /* Border color for cards and sections */
+    --transition: 0.3s ease; /* Transition effect for hover states */
+    --max-width: 1200px; /* Maximum width for content */
+    --border-radius: 10px; /* Consistent border radius */
 }
 
 /* Basic Reset */
@@ -18,7 +19,7 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif; /* Font family for the site */
     background-color: var(--background-color);
     color: var(--text-color);
     line-height: 1.6;
@@ -31,8 +32,9 @@ body {
     text-align: center;
     color: var(--text-color);
     padding: 4rem 2rem;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 2rem; /* Space below the banner */
 }
 
 .banner h1 {
@@ -46,7 +48,7 @@ body {
     margin-bottom: 2rem;
 }
 
-/* Products */
+/* Products Section */
 .products-container {
     max-width: var(--max-width);
     margin: 2rem auto;
@@ -59,10 +61,11 @@ body {
     gap: 2rem;
 }
 
+/* Product Card */
 .product-card {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     overflow: hidden;
     transition: transform var(--transition), box-shadow var(--transition);
     position: relative;
@@ -88,14 +91,14 @@ body {
 }
 
 .product-title {
-    font-size: 1.3rem;
+    font-size: 1.4rem; /* Increased font size for readability */
     font-weight: 600;
     margin-bottom: 0.5rem;
 }
 
 .product-price {
     color: var(--primary-color);
-    font-size: 1.5rem;
+    font-size: 1.6rem; /* Increased font size */
     font-weight: 700;
     margin-bottom: 1rem;
 }
@@ -106,14 +109,14 @@ body {
     background: var(--primary-color);
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: var(--border-radius);
     font-weight: 600;
     cursor: pointer;
     transition: background-color var(--transition), transform var(--transition);
 }
 
 .buy-button:hover {
-    background-color: #ff5700;
+    background-color: #ff5700; /* Darker hover state */
     transform: translateY(-2px);
 }
 
@@ -124,7 +127,7 @@ body {
     text-align: center;
     color: var(--text-color);
     margin-top: 2rem;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -135,16 +138,16 @@ body {
 }
 
 .footer a:hover {
-    color: #fff;
+    color: #fff; /* Hover effect for footer links */
 }
 
-/* Related Topics */
+/* Related Topics Section */
 .related-topics {
     margin: 2rem 0;
     padding: 1rem;
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: var(--border-radius);
 }
 
 .related-topics h3 {
@@ -164,10 +167,70 @@ body {
 /* Responsive Styles */
 @media (max-width: 768px) {
     .banner h1 {
-        font-size: 2.5rem;
+        font-size: 2.5rem; /* Responsive font size for the banner */
     }
 
     .products-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Single column layout on mobile */
     }
+
+    .product-title {
+        font-size: 1.2rem; /* Smaller title on mobile */
+    }
+
+    .product-price {
+        font-size: 1.4rem; /* Smaller price on mobile */
+    }
+}
+
+/* Button Styles */
+.button {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: var(--border-radius);
+    background: var(--accent-color);
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color var(--transition), transform var(--transition);
+}
+
+.button:hover {
+    background: #06c2b4; /* Slightly darker on hover */
+}
+
+/* Modal Styles (for future enhancement) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    width: 80%; /* Could be more or less, depending on screen size */
+    border-radius: var(--border-radius);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
 }
