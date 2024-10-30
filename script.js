@@ -1,47 +1,11 @@
 // Sample products data
 const products = [
-    {
-        id: 1,
-        name: "Bitcoin Flash Tool V6.5.1",
-        price: 250,
-        image: "https://storage.sell.app/store/49175/listings/hs9KNLIrVKmiqK9GExzjpk5vwbuWfV2th7Iq6YAn.jpg",
-        stock: Infinity,
-    },
-    {
-        id: 2,
-        name: "Flash Miner for Windows",
-        price: 100,
-        image: "https://storage.sell.app/store/49175/listings/5jHYcH7r0Pcr1Pp8yjWlSNHLdM7bl9yystNCuCQO.webp",
-        stock: Infinity,
-    },
-    {
-        id: 3,
-        name: "Flash USDT Full Package",
-        price: 300,
-        image: "https://storage.sell.app/store/49175/listings/kcdSyWdCFmRyYU86U7CqDyUO9oCk9JYWYzVvyXID.png",
-        stock: Infinity,
-    },
-    {
-        id: 4,
-        name: "Real USDT Sender",
-        price: 250,
-        image: "https://storage.sell.app/store/49175/listings/c01sS76Of9OXZhH3qROTEGyzFH81Rnjk8dQ1Bbf6.webp",
-        stock: Infinity,
-    },
-    {
-        id: 5,
-        name: "Fake USDT Sender [APK]",
-        price: 600,
-        image: "https://storage.sell.app/store/49175/listings/Ke9rDCgH7bTSniVhnXeiwChgejhASyfx4DjJzFdO.jpg",
-        stock: 500,
-    },
-    {
-        id: 6,
-        name: "Flash Miner Pro",
-        price: 50,
-        image: "https://storage.sell.app/store/49175/listings/dbaeCoLGZCX2h1OkHLIF92hG47YbYEo8mHVo6xpS.png",
-        stock: Infinity,
-    },
+    { id: 1, name: "Bitcoin Flash Tool V6.5.1", price: 250, image: "https://storage.sell.app/store/49175/listings/hs9KNLIrVKmiqK9GExzjpk5vwbuWfV2th7Iq6YAn.jpg", stock: Infinity },
+    { id: 2, name: "Flash Miner for Windows", price: 100, image: "https://storage.sell.app/store/49175/listings/5jHYcH7r0Pcr1Pp8yjWlSNHLdM7bl9yystNCuCQO.webp", stock: Infinity },
+    { id: 3, name: "Flash USDT Full Package", price: 300, image: "https://storage.sell.app/store/49175/listings/kcdSyWdCFmRyYU86U7CqDyUO9oCk9JYWYzVvyXID.png", stock: Infinity },
+    { id: 4, name: "Real USDT Sender", price: 250, image: "https://storage.sell.app/store/49175/listings/c01sS76Of9OXZhH3qROTEGyzFH81Rnjk8dQ1Bbf6.webp", stock: Infinity },
+    { id: 5, name: "Fake USDT Sender [APK]", price: 600, image: "https://storage.sell.app/store/49175/listings/Ke9rDCgH7bTSniVhnXeiwChgejhASyfx4DjJzFdO.jpg", stock: 500 },
+    { id: 6, name: "Flash Miner Pro", price: 50, image: "https://storage.sell.app/store/49175/listings/dbaeCoLGZCX2h1OkHLIF92hG47YbYEo8mHVo6xpS.png", stock: Infinity }
 ];
 
 // Initialize TonConnect
@@ -51,9 +15,7 @@ const tonAddress = "UQAYo6LjrKrCvFoFecSVb9rR-75hjbhw1KvyiljIpFguLmMd"; // Your r
 // Render products to the page
 function renderProducts() {
     const productsGrid = document.getElementById("products");
-    productsGrid.innerHTML = products
-        .map(
-            (product) => `
+    productsGrid.innerHTML = products.map(product => `
         <div class="product-card">
             <img src="${product.image}" alt="${product.name}" class="product-image">
             <div class="product-details">
@@ -65,24 +27,21 @@ function renderProducts() {
                 </button>
             </div>
         </div>
-    `
-        )
-        .join("");
+    `).join("");
 }
 
 // Connect to the user's wallet
 async function connectWallet() {
     try {
-        tonConnect = new TonConnect({
-            project: "scripters.shop", // Your project name
-            manifestUrl: "https://raw.githubusercontent.com/likhonisaac/swap.scripters.shop/refs/heads/main/manifest.json",
-        });
-
+        tonConnect = new TonConnect({ project: "manifest.json" });
         const connected = await tonConnect.connect();
+
         if (connected) {
             const account = await tonConnect.getAccount();
-            alert(`Wallet connected: ${account.address}`);
-            document.getElementById("connect-wallet-button").disabled = true; // Disable button after connection
+            document.getElementById("wallet-status").textContent = `Wallet connected: ${account.address}`;
+            document.getElementById("connect-wallet-button").disabled = true;
+        } else {
+            throw new Error("Wallet connection failed");
         }
     } catch (error) {
         handleError("Wallet connection error:", error);
@@ -91,35 +50,39 @@ async function connectWallet() {
 
 // Handle product purchase
 async function buyProduct(id) {
-    const product = products.find((p) => p.id === id);
+    const product = products.find(p => p.id === id);
+
+    if (!product) {
+        alert("Product not found.");
+        return;
+    }
+
     if (product.stock > 0) {
         if (product.stock !== Infinity) {
             product.stock--; // Decrease stock count
         }
 
         try {
-            const amountInTon = product.price * 1000000000; // Convert price to TON (if needed)
-            const tx = {
-                to: tonAddress,
-                amount: amountInTon,
-                // You can add other parameters here, like a comment
-            };
+            const amountInTon = product.price * 1000000000; // Convert price to TON, if required
+            const tx = { to: tonAddress, amount: amountInTon };
 
+            console.log("Sending transaction:", tx);
             const response = await tonConnect.sendTransaction(tx);
+
             alert(`Successfully purchased: ${product.name}\nPrice: $${product.price}`);
             console.log("Transaction response:", response);
+            renderProducts(); // Update the product list to reflect stock changes
         } catch (error) {
             handleError("Transaction failed:", error);
+            product.stock++; // Revert stock change in case of failure
         }
-
-        renderProducts(); // Re-render products to update stock
     } else {
         alert(`Sorry, ${product.name} is out of stock.`);
     }
 }
 
-// Handle errors
-function handleError(message, error) {
+// Handle errors with logging and user feedback
+function handleError(message, error = {}) {
     console.error(message, error);
     alert("An error occurred. Please try again later.");
 }
