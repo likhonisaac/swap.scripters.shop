@@ -1,4 +1,5 @@
-sitemap:
+# Configuration for automated tasks
+automate:
   url: "https://scripters.shop/"
   change_frequency: "daily"
   priority: 1.0
@@ -7,6 +8,32 @@ tasks:
   keyword_tracking:
     enabled: true
     frequency: "daily"
+
   sitemap_update:
     enabled: true
+    frequency: "weekly"
+
+  # Automation settings for running the script
+  automate_script:
+    enabled: true
+    frequency: "every_5_hours"  # Custom frequency for running the script
+    script_path: "auto.py" 
+
+# Example settings for additional SEO and content generation features
+seo_settings:
+  meta_description: "Discover the latest in cryptocurrency, blockchain tools, and more."
+  keywords:
+    - "Flash USDT"
+    - "Flash Bitcoin"
+    - "Crypto wallet security"
+    - "NFT marketplace solutions"
+    - "Web3 integration solutions"
+
+# Define the schedule for automated tasks
+schedules:
+  - task: "automate_script"
+    frequency: "5 hours"
+  - task: "keyword_tracking"
+    frequency: "daily"
+  - task: "sitemap_update"
     frequency: "weekly"
