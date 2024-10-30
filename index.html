@@ -14,30 +14,34 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
     <link rel="stylesheet" href="style.css">
     
-   <!-- Banner -->
-    <section class="banner">
-        <p>Explore high-end crypto tools designed for secure and efficient transactions.</p>
+    <!-- Load Web3.js library asynchronously -->
+    <script async src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+</head>
+
+<body>
+    <!-- Banner Section -->
+    <header class="banner">
+        <h1>Explore High-End Crypto Tools</h1>
+        <p>Designed for secure and efficient transactions.</p>
         <button class="buy-button" onclick="connectWallet()">
             <i class="fas fa-wallet"></i> Connect Wallet
         </button>
-    </section>
+    </header>
 
-    <!-- Products -->
+    <!-- Products Section -->
     <main class="products-container">
+        <h2>Available Products</h2>
         <div class="products-grid" id="products"></div>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer Section -->
     <footer class="footer">
         <p>&copy; 2024 Crypto Tools Hub. All rights reserved.</p>
     </footer>
 
     <!-- JavaScript -->
-        <!-- JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
     <script src="script.js"></script> <!-- Link to the JavaScript file -->
 </body>
 
