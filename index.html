@@ -1,51 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Discover premium crypto tools and solutions for secure, efficient transactions. Connect with our platform for the ultimate Web3 experience in crypto tools.">
     <meta name="keywords" content="crypto tools, blockchain, Web3, secure transactions, wallet integration, Bitcoin tools">
     <meta name="robots" content="index, follow">
-    <title>Scripters — Buy Digital Goods!</title>
-    
-    <!-- Preload fonts and critical assets for performance -->
+    <title>Scripters — Buy digital goods!</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-
-    <!-- Load TON Connect library -->
-    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js" defer></script>
-    
-    <!-- Load Web3.js library asynchronously -->
-    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js" async></script>
+    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 </head>
-
 <body>
-    <!-- Banner Section -->
     <header class="banner">
         <h1>Explore High-End Crypto Tools</h1>
         <p>Designed for secure and efficient transactions.</p>
-        <button class="buy-button" id="connect-wallet-button" aria-label="Connect your wallet" onclick="connectWallet()">
+        <button id="connect-wallet-button" class="buy-button" onclick="connectWallet()" aria-label="Connect your wallet">
             <i class="fas fa-wallet"></i> Connect Wallet
         </button>
     </header>
 
-    <!-- Products Section -->
     <main class="products-container">
         <h2>Available Products</h2>
-        <div class="products-grid" id="products" aria-live="polite"></div> <!-- Added aria-live for accessibility -->
+        <div class="products-grid" id="products"></div>
     </main>
 
-    <!-- Footer Section -->
     <footer class="footer">
-        <p>&copy; 2024 Scripters. All rights reserved.</p>
+        <p>&copy; 2024 Crypto Tools Hub. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript -->
-    <script src="script.js" defer></script> <!-- Link to the JavaScript file -->
+    <script src="script.js"></script> <!-- Link to the JavaScript file -->
 </body>
-
 </html>
