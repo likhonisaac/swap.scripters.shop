@@ -1,0 +1,12 @@
+sitemap:
+  url: "https://scripters.shop/"
+  change_frequency: "daily"
+  priority: 1.0
+
+tasks:
+  keyword_tracking:
+    enabled: true
+    frequency: "daily"
+  sitemap_update:
+    enabled: true
+    frequency: "weekly"
