@@ -3,19 +3,19 @@
     --primary-color: #00ff88; /* Neon green */
     --secondary-color: #7000ff; /* Electric purple */
     --background-color: #000000; /* Pure black */
-    --card-bg: #0a0a0a;
+    --card-bg: #0a0a0a; /* Card background color */
     --accent-color: #00c3ff; /* Cyber blue */
-    --text-color: #ffffff;
-    --text-muted: #666666;
-    --border-color: rgba(0, 255, 136, 0.1);
-    --grid-lines: rgba(0, 255, 136, 0.05);
-    
+    --text-color: #ffffff; /* Main text color */
+    --text-muted: #666666; /* Muted text color */
+    --border-color: rgba(0, 255, 136, 0.1); /* Border color */
+    --grid-lines: rgba(0, 255, 136, 0.05); /* Grid lines color */
+
     /* Enhanced spacing */
     --space-xs: 0.5rem;
     --space-sm: 1rem;
     --space-md: 2rem;
     --space-lg: 4rem;
-    
+
     /* System properties */
     --max-width: 1400px;
     --border-radius: 12px;
@@ -229,7 +229,7 @@ body {
 }
 
 .buy-button:hover {
-    color: #000000;
+    color: #000000; /* Change text color on hover */
     box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
 }
 
@@ -263,24 +263,24 @@ body {
 
 /* Crypto Modal */
 .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
     left: 0;
     top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    backdrop-filter: blur(5px);
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgba(0, 0, 0, 0.9); /* Fallback color */
+    backdrop-filter: blur(5px); /* Add blur effect */
 }
 
 .modal-content {
     background: var(--card-bg);
-    margin: 15% auto;
+    margin: 15% auto; /* 15% from the top and centered */
     padding: var(--space-md);
     border: 1px solid var(--border-color);
-    width: 90%;
-    max-width: 600px;
+    width: 90%; /* Width of modal */
+    max-width: 600px; /* Maximum width */
     border-radius: var(--card-radius);
     position: relative;
     box-shadow: var(--glow-shadow);
@@ -316,9 +316,21 @@ body {
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
     * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important; /* Reduce animation duration */
+        animation-iteration-count: 1 !important; /* Prevent repeating animations */
+        transition-duration: 0.01ms !important; /* Reduce transition duration */
+        scroll-behavior: auto !important; /* Disable smooth scroll */
     }
+}
+
+/* Focus Styles for Accessibility */
+:focus {
+    outline: 2px dashed var(--primary-color);
+    outline-offset: 4px;
+}
+
+/* Ensure all buttons have accessible labels */
+.buy-button[aria-label]:hover,
+.buy-button[aria-label]:focus {
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
 }
