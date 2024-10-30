@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Exclusive crypto tools for secure transactions. Buy Bitcoin Flash Tool, Flash Miner, USDT Sender, and more. Connect your wallet and buy now.">
-    <title>Crypto Tools Shop - Premium Flash Tools</title>
-    
+    <meta name="description" content="Explore our premium crypto tools for secure and efficient transactions. Shop our exclusive collection of Bitcoin Flash Tools, Miners, and USDT Senders. Connect your wallet and unlock seamless crypto experiences with our trusted platform.">
+    <title>Crypto Tools Shop - Your Trusted Crypto Companion</title>
+
     <!-- Preload critical assets -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 
@@ -17,12 +17,13 @@
         :root {
             --primary-color: #007BFF;
             --secondary-color: #6c757d;
-            --dark-bg: #0D1321;
-            --light-bg: #f8f9fa;
-            --success-color: #28a745;
-            --warning-color: #ffc107;
-            --danger-color: #dc3545;
-            --header-height: 70px;
+            --dark-bg: #111827;
+            --light-bg: #f3f4f6;
+            --success-color: #22c55e;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --header-height: 80px;
+            --transition: all 0.3s ease-in-out;
         }
 
         * {
@@ -32,10 +33,10 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
             background-color: var(--light-bg);
-            color: #333;
+            color: #374151;
         }
 
         /* Header Styles */
@@ -47,21 +48,26 @@
             top: 0;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0 2rem;
+            height: var(--header-height);
         }
 
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 0.5rem;
         }
 
         .nav-menu {
@@ -83,14 +89,27 @@
         /* Banner Styles */
         .banner {
             margin-top: var(--header-height);
-            background: linear-gradient(135deg, var(--dark-bg), #1a237e);
+            background: linear-gradient(135deg, var(--dark-bg), #1f2937);
             color: white;
-            padding: 4rem 2rem;
+            padding: 6rem 2rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
         }
 
         .banner h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
         }
 
@@ -118,11 +137,12 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
+            transition: var(--transition);
         }
 
         .product-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
         }
 
         .product-image {
@@ -133,6 +153,7 @@
 
         .product-details {
             padding: 1.5rem;
+            text-align: center;
         }
 
         .product-title {
@@ -172,15 +193,18 @@
 
         /* Promo Section */
         .promo-section {
-            background: #ffeb3b;
-            padding: 2rem;
+            background: #f9fafb;
+            padding: 4rem 2rem;
             text-align: center;
             margin: 2rem 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .promo-section h2 {
             color: var(--dark-bg);
             margin-bottom: 1rem;
+            font-size: 2rem;
         }
 
         .promo-code {
@@ -190,6 +214,7 @@
             font-weight: 600;
             display: inline-block;
             margin: 1rem 0;
+            font-size: 1.2rem;
         }
 
         /* Footer */
@@ -244,32 +269,33 @@
 
 <body>
     <header class="header">
-        <div class="header-content">
-            <div class="logo">CryptoToolsShop</div>
-            <nav class="nav-menu">
-                <a href="#products" class="nav-link">Products</a>
-                <a href="#support" class="nav-link">Support</a>
-                <a href="https://t.me/ScriptsChats" class="nav-link" target="_blank">
-                    <i class="fab fa-telegram"></i> Telegram
-                </a>
-            </nav>
-        </div>
+        <a href="#" class="logo">
+            <img src="https://example.com/crypto-logo.png" alt="Crypto Logo">
+            CryptoToolsShop
+        </a>
+        <nav class="nav-menu">
+            <a href="#products" class="nav-link">Products</a>
+            <a href="#support" class="nav-link">Support</a>
+            <a href="https://t.me/ScriptsChats" class="nav-link" target="_blank">
+                <i class="fab fa-telegram"></i> Telegram
+            </a>
+        </nav>
     </header>
 
     <section class="banner">
-        <h1>Premium Crypto Tools</h1>
-        <p>Exclusive software solutions for crypto professionals</p>
+        <h1>Your Trusted Crypto Companion</h1>
+        <p>Experience the ultimate crypto tools for secure and seamless transactions. Trust our platform for all your crypto needs.</p>
         <button class="buy-button" onclick="connectWallet()">
             <i class="fas fa-wallet"></i> Connect Wallet
         </button>
     </section>
 
     <section class="promo-section">
-        <h2>🎉 Special Offer Alert! 🎉</h2>
+        <h2>🎉 Exclusive Offer! 🎉</h2>
         <p>Use Coupon Code:</p>
         <div class="promo-code">Scripters-Wishper</div>
-        <p>🤑 Get $50 OFF on Bitcoin Flash Tool V6.5.1!</p>
-        <p>👉 Limited time offer - Act now!</p>
+        <p>🤑 Get $50 OFF on our Bitcoin Flash Tool!</p>
+        <p>👉 Limited time offer - Don't miss out on this incredible deal!</p>
     </section>
 
     <main class="products-container">
@@ -278,7 +304,7 @@
 
     <footer class="footer">
         <p>&copy; 2024 Crypto Tools Shop. All rights reserved.</p>
-        <p>🚀 Premium software for crypto pros</p>
+        <p>🚀 Your trusted crypto partner</p>
         <p>Visit us: <a href="https://scripters.shop" target="_blank">scripters.shop</a></p>
         <p>📩 Support: <a href="https://t.me/likhondev" target="_blank">@likhondev</a></p>
     </footer>
