@@ -1,186 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Premium crypto tools and solutions for secure, efficient Web3 transactions">
-    <meta name="keywords" content="crypto tools, blockchain, Web3, secure transactions, wallet integration, DeFi tools">
-    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Discover premium crypto tools and solutions for secure, efficient transactions. Connect with our platform for the ultimate Web3 experience in crypto tools.">
+    <meta name="keywords" content="crypto tools, blockchain, Web3, secure transactions, wallet integration, Bitcoin tools">
+    <meta name="robots" content="index, follow">
+    <title>Crypto Tools Hub - Your Gateway to Advanced Blockchain Solutions</title>
     
-    <title>CryptoHub Pro - Advanced Web3 Tools</title>
-    
-    <!-- Preload critical assets -->
+    <!-- Preload fonts and critical assets for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+    <div id="ton-connect"></div>
     
-    <!-- Web3 and wallet connection libraries -->
+    <!-- Load Web3.js library asynchronously -->
     <script async src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
-    <script async src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
 </head>
-<body>
-    <!-- Navigation -->
-    <nav class="main-nav">
-        <div class="nav-container">
-            <div class="logo">
-                <span class="logo-text">CryptoHub<span class="accent">Pro</span></span>
-            </div>
-            <div class="nav-links">
-                <a href="#tools" class="nav-link">Tools</a>
-                <a href="#features" class="nav-link">Features</a>
-                <a href="#pricing" class="nav-link">Pricing</a>
-                <button class="connect-wallet" id="walletConnect">
-                    <i class="fas fa-wallet"></i>
-                    <span class="wallet-text">Connect Wallet</span>
-                </button>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="hero-content">
-            <h1 class="glitch-text" data-text="Advanced Crypto Tools">Advanced Crypto Tools</h1>
-            <p class="hero-subtitle">Elevate your Web3 experience with professional-grade tools</p>
-            <div class="cta-buttons">
-                <button class="primary-btn pulse">
-                    <span class="btn-text">Launch App</span>
-                    <i class="fas fa-rocket"></i>
-                </button>
-                <button class="secondary-btn">
-                    <span class="btn-text">Learn More</span>
-                    <i class="fas fa-arrow-right"></i>
-                </button>
-            </div>
-        </div>
-        <div class="hero-graphics">
-            <div class="crypto-particles"></div>
-            <div class="glow-sphere"></div>
-        </div>
+<body>
+    <!-- Banner Section -->
+    <header class="banner">
+        <h1>Explore High-End Crypto Tools</h1>
+        <p>Designed for secure and efficient transactions.</p>
+        <button class="buy-button" onclick="connectWallet()">
+            <i class="fas fa-wallet"></i> Connect Wallet
+        </button>
     </header>
 
-    <!-- Features Grid -->
-    <section id="features" class="features-section">
-        <h2 class="section-title">Premium Features</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <i class="fas fa-shield-alt feature-icon"></i>
-                <h3>Enhanced Security</h3>
-                <p>Military-grade encryption for all transactions</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-bolt feature-icon"></i>
-                <h3>Lightning Speed</h3>
-                <p>Instant transactions with minimal gas fees</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-chart-line feature-icon"></i>
-                <h3>Advanced Analytics</h3>
-                <p>Real-time market analysis and predictions</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-code feature-icon"></i>
-                <h3>Smart Contracts</h3>
-                <p>Automated contract deployment and verification</p>
-            </div>
-        </div>
-    </section>
+    <!-- Products Section -->
+    <main class="products-container">
+        <h2>Available Products</h2>
+        <div class="products-grid" id="products"></div>
+    </main>
 
-    <!-- Tools Section -->
-    <section id="tools" class="tools-section">
-        <h2 class="section-title">Professional Tools</h2>
-        <div class="tools-grid" id="toolsGrid">
-            <!-- Tools will be dynamically populated via JavaScript -->
-        </div>
-    </section>
-
-    <!-- Price Tiers -->
-    <section id="pricing" class="pricing-section">
-        <h2 class="section-title">Choose Your Plan</h2>
-        <div class="pricing-grid">
-            <div class="price-card starter">
-                <div class="price-header">
-                    <h3>Starter</h3>
-                    <div class="price">0.01 ETH<span>/month</span></div>
-                </div>
-                <ul class="features-list">
-                    <li><i class="fas fa-check"></i> Basic Analytics</li>
-                    <li><i class="fas fa-check"></i> Standard Security</li>
-                    <li><i class="fas fa-check"></i> Community Support</li>
-                </ul>
-                <button class="price-btn">Get Started</button>
-            </div>
-            <div class="price-card pro">
-                <div class="price-header">
-                    <h3>Pro</h3>
-                    <div class="price">0.05 ETH<span>/month</span></div>
-                </div>
-                <ul class="features-list">
-                    <li><i class="fas fa-check"></i> Advanced Analytics</li>
-                    <li><i class="fas fa-check"></i> Premium Security</li>
-                    <li><i class="fas fa-check"></i> 24/7 Support</li>
-                    <li><i class="fas fa-check"></i> Custom Tools</li>
-                </ul>
-                <button class="price-btn">Upgrade Now</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Wallet Connection Modal -->
-    <div class="modal" id="walletModal">
-        <div class="modal-content">
-            <h3>Connect Your Wallet</h3>
-            <div class="wallet-options">
-                <button class="wallet-option metamask">
-                    <img src="/api/placeholder/32/32" alt="MetaMask">
-                    <span>MetaMask</span>
-                </button>
-                <button class="wallet-option walletconnect">
-                    <img src="/api/placeholder/32/32" alt="WalletConnect">
-                    <span>WalletConnect</span>
-                </button>
-                <button class="wallet-option tonkeeper">
-                    <img src="/api/placeholder/32/32" alt="Tonkeeper">
-                    <span>Tonkeeper</span>
-                </button>
-            </div>
-            <button class="close-modal">&times;</button>
-        </div>
-    </div>
-
-    <!-- Footer -->
+    <!-- Footer Section -->
     <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>CryptoHub Pro</h4>
-                <p>Advanced tools for the modern crypto trader</p>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <a href="#features">Features</a>
-                <a href="#tools">Tools</a>
-                <a href="#pricing">Pricing</a>
-            </div>
-            <div class="footer-section">
-                <h4>Connect</h4>
-                <div class="social-links">
-                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
-                    <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 CryptoHub Pro. All rights reserved.</p>
-        </div>
+        <p>&copy; 2024 Crypto Tools Hub. All rights reserved.</p>
     </footer>
 
-    <!-- Matrix rain canvas -->
-    <canvas id="matrixRain"></canvas>
-
-    <!-- Custom Scripts -->
-    <script src="script.js"></script>
+    <!-- JavaScript -->
+    <script src="script.js"></script> <!-- Link to the JavaScript file -->
 </body>
+
 </html>
