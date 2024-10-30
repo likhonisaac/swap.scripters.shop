@@ -1,39 +1,27 @@
-# Configuration for automated tasks
-automate:
-  url: "https://scripters.shop/"
-  change_frequency: "daily"
-  priority: 1.0
+ name: Automate Script Execution
 
-tasks:
-  keyword_tracking:
-    enabled: true
-    frequency: "daily"
+on:
+  schedule:
+    - cron: '0 * * * *'  # Runs every hour at the top of the hour
+  workflow_dispatch:  # Allows manual triggering of the workflow
 
-  sitemap_update:
-    enabled: true
-    frequency: "weekly"
+jobs:
+  run_script:
+    runs-on: ubuntu-latest
 
-  # Automation settings for running the script
-  automate_script:
-    enabled: true
-    frequency: "every_5_hours"  # Custom frequency for running the script
-    script_path: "auto.py" 
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-# Example settings for additional SEO and content generation features
-seo_settings:
-  meta_description: "Discover the latest in cryptocurrency, blockchain tools, and more."
-  keywords:
-    - "Flash USDT"
-    - "Flash Bitcoin"
-    - "Crypto wallet security"
-    - "NFT marketplace solutions"
-    - "Web3 integration solutions"
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'  # Specify the Python version you want to use
 
-# Define the schedule for automated tasks
-schedules:
-  - task: "automate_script"
-    frequency: "5 hours"
-  - task: "keyword_tracking"
-    frequency: "daily"
-  - task: "sitemap_update"
-    frequency: "weekly"
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt  # Install any dependencies if you have a requirements.txt
+
+      - name: Run Automate Script
+        run: |
+          python automate.py  # Execute your automate.py script
