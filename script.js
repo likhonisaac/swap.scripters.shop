@@ -1,3 +1,13 @@
+// Sample products data
+const products = [
+    { id: 1, name: "Bitcoin Flash Tool V6.5.1", price: 250, image: "https://storage.sell.app/store/49175/listings/hs9KNLIrVKmiqK9GExzjpk5vwbuWfV2th7Iq6YAn.jpg", stock: Infinity },
+    { id: 2, name: "Flash Miner for Windows", price: 100, image: "https://storage.sell.app/store/49175/listings/5jHYcH7r0Pcr1Pp8yjWlSNHLdM7bl9yystNCuCQO.webp", stock: Infinity },
+    { id: 3, name: "Flash USDT Full Package", price: 300, image: "https://storage.sell.app/store/49175/listings/kcdSyWdCFmRyYU86U7CqDyUO9oCk9JYWYzVvyXID.png", stock: Infinity },
+    { id: 4, name: "Real USDT Sender", price: 250, image: "https://storage.sell.app/store/49175/listings/c01sS76Of9OXZhH3qROTEGyzFH81Rnjk8dQ1Bbf6.webp", stock: Infinity },
+    { id: 5, name: "Fake USDT Sender [APK]", price: 600, image: "https://storage.sell.app/store/49175/listings/Ke9rDCgH7bTSniVhnXeiwChgejhASyfx4DjJzFdO.jpg", stock: 500 },
+    { id: 6, name: "Flash Miner Pro", price: 50, image: "https://storage.sell.app/store/49175/listings/dbaeCoLGZCX2h1OkHLIF92hG47YbYEo8mHVo6xpS.png", stock: Infinity }
+];
+
 // Initialize TonConnect globally to track wallet connection
 let tonConnect;
 let isConnected = false; // Track connection status
@@ -52,17 +62,12 @@ async function connectWallet() {
     }
 }
 
-// Render products dynamically on the page
+// Render products dynamically on the page with images and prices
 function renderProducts() {
-    const products = [
-        { id: 1, name: "Crypto Tool 1", price: 50, stock: 10 },
-        { id: 2, name: "Crypto Tool 2", price: 75, stock: 5 },
-        { id: 3, name: "Crypto Tool 3", price: 100, stock: Infinity }
-    ];
-
     const productsContainer = document.getElementById("products");
     productsContainer.innerHTML = products.map(product => `
         <div class="product">
+            <img src="${product.image}" alt="${product.name}" class="product-image">
             <h3>${product.name}</h3>
             <p>Price: $${product.price}</p>
             <button class="buy-button" onclick="buyProduct(${product.id})">
