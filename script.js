@@ -8,40 +8,24 @@ const products = [
     { id: 6, name: "Flash Miner Pro", price: 50, image: "https://storage.sell.app/store/49175/listings/dbaeCoLGZCX2h1OkHLIF92hG47YbYEo8mHVo6xpS.png", stock: Infinity }
 ];
 
-// Initialize TonConnect
-let tonConnect;
-const tonAddress = "UQAYo6LjrKrCvFoFecSVb9rR-75hjbhw1KvyiljIpFguLmMd"; // Your receiving address
-
-// Render products to the page
-function renderProducts() {
-    const productsGrid = document.getElementById("products");
-    productsGrid.innerHTML = products.map(product => `
-        <div class="product-card">
-            <img src="${product.image}" alt="${product.name}" class="product-image">
-            <div class="product-details">
-                <h3 class="product-title">${product.name}</h3>
-                <p class="product-price">$${product.price}</p>
-                <p class="product-stock">${product.stock === Infinity ? "In Stock" : `${product.stock} in stock`}</p>
-                <button class="buy-button" onclick="buyProduct(${product.id})" ${product.stock === 0 ? "disabled" : ""}>
-                    <i class="fas fa-shopping-cart"></i> Buy Now
-                </button>
-            </div>
-        </div>
-    `).join("");
-}
+// Global variable to track connection status
+let isConnected = false;
 
 // Connect to the user's wallet
 async function connectWallet() {
     try {
-        tonConnect = new TonConnect({ project: "manifest.json" });
+        tonConnect = new TonConnect({ project: "tonconnect-manifest.json" });
+        
+        // Try connecting
         const connected = await tonConnect.connect();
 
         if (connected) {
             const account = await tonConnect.getAccount();
             document.getElementById("wallet-status").textContent = `Wallet connected: ${account.address}`;
             document.getElementById("connect-wallet-button").disabled = true;
+            isConnected = true; // Set connection status to true
         } else {
-            throw new Error("Wallet connection failed");
+            throw new Error("Failed to connect wallet.");
         }
     } catch (error) {
         handleError("Wallet connection error:", error);
@@ -50,6 +34,11 @@ async function connectWallet() {
 
 // Handle product purchase
 async function buyProduct(id) {
+    if (!isConnected || !tonConnect) {
+        alert("Please connect your wallet before purchasing.");
+        return;
+    }
+
     const product = products.find(p => p.id === id);
 
     if (!product) {
@@ -63,18 +52,18 @@ async function buyProduct(id) {
         }
 
         try {
-            const amountInTon = product.price * 1000000000; // Convert price to TON, if required
+            const amountInTon = product.price * 1000000000; // Convert price to TON
             const tx = { to: tonAddress, amount: amountInTon };
 
             console.log("Sending transaction:", tx);
-            const response = await tonConnect.sendTransaction(tx);
-
+            const response = await tonConnect.sendTransaction(tx); // Ensure `tonConnect` is connected
+            
             alert(`Successfully purchased: ${product.name}\nPrice: $${product.price}`);
             console.log("Transaction response:", response);
-            renderProducts(); // Update the product list to reflect stock changes
+            renderProducts(); // Update stock
         } catch (error) {
             handleError("Transaction failed:", error);
-            product.stock++; // Revert stock change in case of failure
+            product.stock++; // Restore stock if transaction fails
         }
     } else {
         alert(`Sorry, ${product.name} is out of stock.`);
