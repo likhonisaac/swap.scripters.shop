@@ -8,6 +8,10 @@ const products = [
     { id: 6, name: "Flash Miner Pro", price: 50, image: "https://storage.sell.app/store/49175/listings/dbaeCoLGZCX2h1OkHLIF92hG47YbYEo8mHVo6xpS.png", stock: Infinity },
 ];
 
+// Initialize TonConnect
+let tonConnect;
+const tonAddress = "UQAYo6LjrKrCvFoFecSVb9rR-75hjbhw1KvyiljIpFguLmMd";
+
 // Render products to the page
 function renderProducts() {
     const productsGrid = document.getElementById('products');
@@ -26,18 +30,22 @@ function renderProducts() {
     `).join('');
 }
 
-// Connect to the user's wallet (supports MetaMask and WalletConnect)
+// Connect to the user's wallet
 async function connectWallet() {
-    if (window.ethereum) {
-        try {
-            const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-            alert(`Wallet connected: ${accounts[0]}`);
-            document.querySelector('.wallet-button').innerHTML = '<i class="fas fa-wallet"></i> Wallet Connected';
-        } catch (error) {
-            handleError("Wallet connection error:", error);
+    try {
+        tonConnect = new TonConnect({
+            // Configuration for TonConnect
+            project: "scripters.shop", // Your project name
+            manifestUrl: "https://raw.githubusercontent.com/likhonisaac/swap.scripters.shop/refs/heads/main/manifest.json"
+        });
+
+        const connected = await tonConnect.connect();
+        if (connected) {
+            const account = await tonConnect.getAccount();
+            alert(`Wallet connected: ${account.address}`);
         }
-    } else {
-        alert("No compatible wallet detected. Please install MetaMask or use WalletConnect.");
+    } catch (error) {
+        handleError("Wallet connection error:", error);
     }
 }
 
@@ -48,10 +56,37 @@ async function buyProduct(id) {
         if (product.stock !== Infinity) {
             product.stock--; // Decrease stock count
         }
-        alert(`Initiating purchase for product: ${product.name}\nPrice: $${product.price}`);
+
+        try {
+            const amountInTon = product.price * 1000000000; // Convert price to TON (if needed)
+            const tx = {
+                to: tonAddress,
+                amount: amountInTon,
+                // Optional: add a comment or other transaction details if needed
+            };
+
+            const response = await tonConnect.sendTransaction(tx);
+            alert(`Successfully purchased: ${product.name}\nPrice: $${product.price}`);
+            console.log("Transaction response:", response);
+        } catch (error) {
+            handleError("Transaction failed:", error);
+        }
+
         renderProducts(); // Re-render products to update stock
     } else {
         alert(`Sorry, ${product.name} is out of stock.`);
+    }
+}
+
+// Fetch and use manifest data
+async function fetchManifest() {
+    try {
+        const response = await fetch('https://raw.githubusercontent.com/likhonisaac/swap.scripters.shop/refs/heads/main/manifest.json?token=GHSAT0AAAAAACZNMQ6COBWJL5QYHS5BWN6SZZCARNA');
+        const manifest = await response.json();
+        console.log("Manifest data:", manifest);
+        // You can use the manifest data for various purposes like displaying app information, etc.
+    } catch (error) {
+        console.error("Failed to fetch manifest:", error);
     }
 }
 
@@ -64,4 +99,5 @@ function handleError(message, error) {
 // Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
+    fetchManifest(); // Fetch the manifest data on page load
 });
