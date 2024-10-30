@@ -1,8 +1,8 @@
 {
     "name": "Scripters",
     "description": "Buy digital goods!",
-    "url": "https://scripters.shop",  // Your actual website URL
-    "iconUrl": "https://raw.githubusercontent.com/likhonisaac/swap.scripters.shop/refs/heads/main/IMG_3212.jpeg?token=GHSAT0AAAAAACZNMQ6DY4ALXOBCYNRXQQOKZZCANGA",
-    "termsOfUseUrl": "https://scripters.shop/terms",  // Replace with the actual URL to your terms of service
-    "privacyPolicyUrl": "https://scripters.shop/privacy"  // Replace with the actual URL to your privacy policy
+    "url": "https://scripters.shop",  
+    "iconUrl": "IMG_3212.jpeg",
+    "termsOfUseUrl": "https://scripters.shop/terms",  
+    "privacyPolicyUrl": "https://scripters.shop/privacy"  
 }
