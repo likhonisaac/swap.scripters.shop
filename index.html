@@ -4,48 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Discover premium crypto tools and solutions for secure, efficient transactions. Connect with our platform for the ultimate Web3 experience in crypto tools.">
-    <meta name="keywords" content="crypto tools, blockchain, Web3, secure transactions, wallet integration, Bitcoin tools">
+    <meta name="description" content="Explore a curated collection of crypto tools and solutions for the ultimate Web3 experience. Secure, efficient, and innovative.">
+    <meta name="keywords" content="crypto tools, blockchain, Web3, decentralized, wallet integration, smart contracts">
     <meta name="robots" content="index, follow">
-    <title>Crypto Tools Hub - Your Gateway to Advanced Blockchain Solutions</title>
-    <div class="border relative before:absolute before:inset-0 before:h-full before:w-full before:bg-[linear-gradient(var(--direction),var(--tw-gradient-stops))] before:from-[--colour1] before:to-[--colour2] before:blur-[10px] before:[clip-path:polygon(-100vmax_-100vmax,100vmax_-100vmax,100vmax_100vmax,-100vmax_100vmax,-100vmax_-100vmax,0_0,0_100%,100%_100%,100%_0,0_0)] h-full w-full shadow-md hover:shadow-md rounded-user-large" style="background-color:#000000;border-color:#000000"></div>
-    <div class="border max-w-5/6 flex w-fit flex-row items-center gap-x-2 truncate rounded-full px-4 py-2 text-sm @desktop:gap-x-4 @desktop:py-3 @desktop:text-base backdrop-blur" style="color:#ffffff;background-color:#000000a0;border-color:transparent"><div class="flex grow flex-row items-center justify-center gap-2 @desktop:gap-6"><a class="flex flex-row items-center gap-2 border-2 border-transparent p-1 font-bold" href="/"><img class="h-8 w-8 shrink-0" src="https://storage.sell.app/media-assets/86238/xjbix93bgm01ogl0pjkysb73" alt="Store logo"><span class="hidden @desktop:block">Scripters — Buy digital goods!</span></a><a class="outline-on-focus self-center rounded-full border-2 border-transparent px-2 py-1 font-medium transition data-[active]:border-black/10 data-[active]:bg-white/10" data-active="true" href="/">Products</a><a href="https://t.me/ScriptersCommunity" class="h-full [&amp;>div>div>span]:px-2.5 [&amp;>div>div>span]:py-px [&amp;>div>div>span]:font-medium [&amp;>div>span]:px-2.5 [&amp;>div>span]:py-px"><div class="relative before:absolute before:inset-0 before:h-full before:w-full before:bg-[linear-gradient(var(--direction),var(--tw-gradient-stops))] before:from-[--colour1] before:to-[--colour2] before:blur-[10px] before:[clip-path:polygon(-100vmax_-100vmax,100vmax_-100vmax,100vmax_100vmax,-100vmax_100vmax,-100vmax_-100vmax,0_0,0_100%,100%_100%,100%_0,0_0)] transition ease-in-out flex h-full items-center justify-center font-semibold shadow-sm duration-200 hover:shadow-lg flex-row gap-2 rounded-user-full" style="background-color:#ffffff;color:#000000;--tw-shadow-color:#000000;--tw-shadow:var(--tw-shadow-colored)"><span>Support</span></div></a></div></div>
-    <!-- Preload fonts and critical assets for performance -->
+    <title>Crypto Tools - Elevate Your Web3 Journey</title>
+    <link rel="icon" href="favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
-    <div id="ton-connect"></div>
-    
-    <!-- Load Web3.js library asynchronously -->
-    <script async src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/@web3-onboard/core"></script>
+    <script src="https://unpkg.com/@web3-onboard/coinbase"></script>
+    <script src="https://unpkg.com/@web3-onboard/walletconnect"></script>
+    <script src="https://unpkg.com/@web3-onboard/injected-wallets"></script>
+    <script src="https://unpkg.com/@web3-onboard/frame"></script>
+    <script src="https://unpkg.com/@web3-onboard/fortmatic"></script>
+    <script src="https://unpkg.com/@web3-onboard/walletlink"></script>
+    <script src="https://unpkg.com/@web3-onboard/torus"></script>
+    <script src="https://unpkg.com/@web3-onboard/portis"></script>
+    <script src="https://unpkg.com/@web3-onboard/authereum"></script>
+    <script src="https://unpkg.com/@web3-onboard/magic"></script>
+    <script src="https://unpkg.com/@web3-onboard/ledger"></script>
+    <script src="https://unpkg.com/@web3-onboard/trezor"></script>
+    <script src="https://unpkg.com/@web3-onboard/gnosis"></script>
+    <script src="https://unpkg.com/@web3-onboard/dcent"></script>
+    <script src="https://unpkg.com/@web3-onboard/bitski"></script>
+    <script src="https://unpkg.com/@web3-onboard/wallet">
 </head>
 
 <body>
-    <!-- Banner Section -->
-    <header class="banner">
-        <h1>Explore High-End Crypto Tools</h1>
-        <p>Designed for secure and efficient transactions.</p>
-        <button class="buy-button" onclick="connectWallet()">
-            <i class="fas fa-wallet"></i> Connect Wallet
-        </button>
+    <header class="header">
+        <div class="container">
+            <h1 class="title">Crypto Tools</h1>
+            <p class="subtitle">Elevate Your Web3 Journey</p>
+            <button class="connect-wallet-button" onclick="connectWallet()">Connect Wallet</button>
+        </div>
     </header>
 
-    <!-- Products Section -->
     <main class="products-container">
-        <h2>Available Products</h2>
-        <div class="products-grid" id="products"></div>
+        <div class="container">
+            <h2 class="section-title">Explore Our Crypto Tools</h2>
+            <div class="products-grid" id="products"></div>
+        </div>
     </main>
 
-    <!-- Footer Section -->
     <footer class="footer">
-        <p>&copy; 2024 Crypto Tools Hub. All rights reserved.</p>
+        <div class="container">
+            <p>&copy; 2024 Crypto Tools. All rights reserved.</p>
+        </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script src="script.js"></script> <!-- Link to the JavaScript file -->
+    <script src="script.js"></script>
 </body>
 
 </html>
