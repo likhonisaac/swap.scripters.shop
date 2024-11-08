@@ -3,59 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Discover premium crypto tools and solutions for secure, efficient transactions.">
-    <meta name="keywords" content="crypto tools, blockchain, Web3, secure transactions, wallet integration">
+    <meta name="description" content="Buy digital crypto tools. Explore high-end crypto tools for secure transactions.">
     <meta name="robots" content="index, follow">
-    
-    <title>Scripters — Buy Digital Goods!</title>
+    <title>Scripters — Crypto Tools Marketplace</title>
+
+    <!-- Google Font and Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <style>
+        /* Global Styles */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
+            background-color: #000;
+            color: white;
+            box-sizing: border-box;
         }
 
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Banner */
         .banner {
-            background-color: #333;
-            color: white;
+            background: #111;
+            color: #fff;
             text-align: center;
-            padding: 50px 20px;
+            padding: 60px 20px;
         }
 
         .banner h1 {
-            margin-bottom: 20px;
-            font-size: 2.5em;
+            font-size: 3em;
+            margin-bottom: 15px;
         }
 
         .banner p {
             font-size: 1.2em;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
-        .buy-button {
+        .banner .buy-button {
             background-color: #ff6600;
-            color: white;
-            padding: 10px 20px;
-            font-size: 1.2em;
+            padding: 12px 25px;
+            font-size: 1.1em;
             border: none;
-            cursor: pointer;
             border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
         }
 
-        .buy-button:hover {
+        .banner .buy-button:hover {
             background-color: #e65c00;
         }
 
-        .status-message {
-            margin-top: 20px;
-            font-size: 1.1em;
-        }
-
+        /* Products Section */
         .products-container {
             padding: 40px 20px;
             text-align: center;
@@ -63,69 +69,89 @@
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
             justify-items: center;
         }
 
         .product-card {
-            background-color: #fff;
+            background: #222;
             border-radius: 8px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
             padding: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            max-width: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7);
         }
 
         .product-card img {
-            width: 100%;
-            height: auto;
+            max-width: 100%;
             border-radius: 8px;
+            margin-bottom: 15px;
         }
 
         .product-card h3 {
-            margin: 15px 0;
-            font-size: 1.4em;
-        }
-
-        .product-card p {
-            font-size: 1.2em;
-            color: #555;
+            font-size: 1.5em;
+            margin-bottom: 10px;
         }
 
         .product-card .price {
-            font-size: 1.6em;
+            font-size: 1.4em;
             color: #e65c00;
-            font-weight: bold;
+            margin-bottom: 15px;
         }
 
-        .footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #333;
-            color: white;
-        }
-
-        .buy-now {
+        .product-card .buy-now {
             background-color: #28a745;
+            color: white;
+            padding: 12px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
         }
 
-        .buy-now:hover {
+        .product-card .buy-now:hover {
             background-color: #218838;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #111;
+            padding: 20px;
+            text-align: center;
+            color: #888;
+            margin-top: 50px;
+        }
+
+        .footer a {
+            color: #e65c00;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* TON Connect */
+        #connect {
+            margin: 30px 0;
         }
     </style>
 </head>
 <body>
     <header class="banner">
         <h1>Explore High-End Crypto Tools</h1>
-        <p>Secure tools for efficient transactions.</p>
-        <button id="connect-wallet-button" class="buy-button" onclick="connectWallet()">
-            <i class="fas fa-wallet"></i> Connect Wallet
-        </button>
-        <p id="wallet-status" class="status-message"></p>
+        <p>Secure tools for efficient crypto transactions.</p>
+        <!-- TON Connect Button -->
+        <div id="connect"></div>
     </header>
-
-    <div id="connect"></div>
 
     <main class="products-container">
         <h2>Available Products</h2>
@@ -133,17 +159,19 @@
     </main>
 
     <footer class="footer">
-        <p>&copy; 2024 Crypto Tools Hub. All rights reserved.</p>
+        <p>&copy; 2024 Crypto Tools Hub. All rights reserved. <a href="https://github.com">GitHub</a></p>
     </footer>
 
+    <!-- TON Connect UI and Web3 integration -->
     <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
     <script>
+        // Initialize the TON Connect UI
         const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
             manifestUrl: 'https://swap.scripters.shop/tonconnect-manifest.json',
             buttonRootId: "connect"
         });
 
-        // Product data
+        // Sample Product Data
         const products = [
             {
                 "name": "Bitcoin Flash Tool V6.5.1",
@@ -162,7 +190,7 @@
             }
         ];
 
-        // Function to display products
+        // Function to display the products dynamically
         function displayProducts() {
             const productsGrid = document.getElementById("products");
             products.forEach(product => {
@@ -172,8 +200,7 @@
                 productCard.innerHTML = `
                     <img src="${product.image}" alt="${product.name}">
                     <h3>${product.name}</h3>
-                    <p>${product.price.toFixed(2)} USD</p>
-                    <div class="price">$${product.price.toFixed(2)}</div>
+                    <p class="price">${product.price.toFixed(2)} USD</p>
                     <button class="buy-now" onclick="buyProduct('${product.name}', ${product.price})">Buy Now</button>
                 `;
 
@@ -184,31 +211,16 @@
         // Call the function to display products
         displayProducts();
 
-        // Wallet connection status
-        let userWallet = null;
-
-        // Connect wallet function
-        function connectWallet() {
-            tonConnectUI.connect().then(wallet => {
-                userWallet = wallet;
-                document.getElementById("wallet-status").innerText = `Wallet connected: ${wallet.name}`;
-                document.getElementById("connect-wallet-button").disabled = true; // Disable button after connection
-            }).catch(error => {
-                document.getElementById("wallet-status").innerText = 'Connection failed!';
-            });
-        }
-
         // Simulate a "Buy Now" purchase
         function buyProduct(productName, productPrice) {
+            const userWallet = tonConnectUI.getWallet();
             if (userWallet) {
-                alert(`You are about to purchase ${productName} for ${productPrice} USD.`);
-                // Here you would integrate with a payment system to process the payment with the user's wallet
-                // For now, we're just simulating it with an alert.
+                alert(`You are about to purchase ${productName} for ${productPrice} USD using your wallet: ${userWallet.name}.`);
+                // Real purchase logic would be here (e.g., interacting with a blockchain smart contract)
             } else {
                 alert("Please connect your wallet first.");
             }
         }
-
     </script>
 </body>
 </html>
