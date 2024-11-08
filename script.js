@@ -23,14 +23,14 @@ async function initializeTonConnect() {
     try {
         tonConnect = new TonConnect({ manifestUrl: 'https://swap.scripters.shop/tonconnect-manifest.json' });
         
-        // Try to establish connection status
+        // Check if already connected
         const connected = await tonConnect.connect();
-
+        
         if (connected) {
             const account = await tonConnect.getAccount();
             document.getElementById("wallet-status").textContent = `Wallet connected: ${account.address}`;
             document.getElementById("connect-wallet-button").disabled = true;
-            isConnected = true;
+            isConnected = true; // Update connection status
         } else {
             document.getElementById("wallet-status").textContent = "Connect your wallet to begin";
         }
@@ -42,18 +42,18 @@ async function initializeTonConnect() {
 // Connect to wallet function
 async function connectWallet() {
     try {
-        // Check if already connected
         if (isConnected) {
             alert("Wallet already connected.");
-            return;
+            return; // Skip the connection process if already connected
         }
 
+        // Try to establish connection
         const connected = await tonConnect.connect();
         if (connected) {
             const account = await tonConnect.getAccount();
             document.getElementById("wallet-status").textContent = `Wallet connected: ${account.address}`;
             document.getElementById("connect-wallet-button").disabled = true;
-            isConnected = true;
+            isConnected = true; // Update connection status
         } else {
             alert("Unable to connect wallet.");
         }
