@@ -7,23 +7,6 @@
     <meta name="keywords" content="crypto tools, blockchain, Web3, secure transactions, wallet integration">
     <meta name="robots" content="index, follow">
     
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Scripters — Buy Digital Goods!">
-    <meta property="og:description" content="Discover premium crypto tools and solutions for secure, efficient transactions.">
-    <meta property="og:image" content="https://example.com/path/to/image.jpg">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://scripters.shop">
-    
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Scripters — Buy Digital Goods!">
-    <meta name="twitter:description" content="Discover premium crypto tools and solutions for secure, efficient transactions.">
-    <meta name="twitter:image" content="https://example.com/path/to/image.jpg">
-    <meta name="twitter:url" content="https://scripters.shop">
-
-    <!-- Canonical Link -->
-    <link rel="canonical" href="https://scripters.shop">
-    
     <title>Scripters — Buy Digital Goods!</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -122,14 +105,21 @@
             background-color: #333;
             color: white;
         }
-    </style>
 
+        .buy-now {
+            background-color: #28a745;
+        }
+
+        .buy-now:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
 <body>
     <header class="banner">
         <h1>Explore High-End Crypto Tools</h1>
         <p>Secure tools for efficient transactions.</p>
-        <button id="connect-wallet-button" class="buy-button">
+        <button id="connect-wallet-button" class="buy-button" onclick="connectWallet()">
             <i class="fas fa-wallet"></i> Connect Wallet
         </button>
         <p id="wallet-status" class="status-message"></p>
@@ -184,6 +174,7 @@
                     <h3>${product.name}</h3>
                     <p>${product.price.toFixed(2)} USD</p>
                     <div class="price">$${product.price.toFixed(2)}</div>
+                    <button class="buy-now" onclick="buyProduct('${product.name}', ${product.price})">Buy Now</button>
                 `;
 
                 productsGrid.appendChild(productCard);
@@ -193,12 +184,31 @@
         // Call the function to display products
         displayProducts();
 
-        // Automatically connect wallet on page load
-        tonConnectUI.connect().then(wallet => {
-            document.getElementById("wallet-status").innerText = `Wallet connected: ${wallet.name}`;
-        }).catch(error => {
-            document.getElementById("wallet-status").innerText = 'Connection failed!';
-        });
+        // Wallet connection status
+        let userWallet = null;
+
+        // Connect wallet function
+        function connectWallet() {
+            tonConnectUI.connect().then(wallet => {
+                userWallet = wallet;
+                document.getElementById("wallet-status").innerText = `Wallet connected: ${wallet.name}`;
+                document.getElementById("connect-wallet-button").disabled = true; // Disable button after connection
+            }).catch(error => {
+                document.getElementById("wallet-status").innerText = 'Connection failed!';
+            });
+        }
+
+        // Simulate a "Buy Now" purchase
+        function buyProduct(productName, productPrice) {
+            if (userWallet) {
+                alert(`You are about to purchase ${productName} for ${productPrice} USD.`);
+                // Here you would integrate with a payment system to process the payment with the user's wallet
+                // For now, we're just simulating it with an alert.
+            } else {
+                alert("Please connect your wallet first.");
+            }
+        }
+
     </script>
 </body>
 </html>
