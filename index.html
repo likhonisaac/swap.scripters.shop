@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
     
     <style>
         /* Global Styles */
@@ -145,6 +148,7 @@
         }
     </style>
 </head>
+
 <body>
     <header class="banner">
         <h1>Explore High-End Crypto Tools</h1>
@@ -222,5 +226,19 @@
             }
         }
     </script>
+
+    <!-- PWA Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js').then((registration) => {
+                    console.log('Service Worker registered with scope: ', registration.scope);
+                }).catch((error) => {
+                    console.log('Service Worker registration failed: ', error);
+                });
+            });
+        }
+    </script>
 </body>
+
 </html>
