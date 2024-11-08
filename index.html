@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Discover premium crypto tools and solutions for secure, efficient transactions. Connect with our platform for the ultimate Web3 experience in crypto tools.">
-    <meta name="keywords" content="crypto tools, blockchain, Web3, secure transactions, wallet integration, Bitcoin tools, flash usdt, is flash usdt real, how to identify flash usdt, how to create flash usdt, what is flash usdt used for, flash usdt trc20, flash usdt price, how to check flash usdt, flash usdt binance, how to get flash usdt on binance, flash usdt github, flash usdt address, flash usdt and btc, flash usdt android app, flash usdt application, flash usdt android, tether usdt to usd, usdt and usdt difference, atomic flash usdt, flash usdt contract address, what are flash usdt, what is the difference between usdt and usdt, flash usdt meaning, flash usdt buy, flash usdt bot, flash usdt buy in india, flash usdt bep20, flash usdt binance review, is tether usdt safe, how does tether usdt work, buy flash usdt, binance flash usdt, flash btc usdt, can i sell flash usdt on binance, can we sell flash usdt on binance, flash usdt create, flash usdt code, flash usdt coin, flash usdt contract address trust wallet, flash usdt meaning crypto, flash usdt source code, create flash usdt, comprar usdt flash, usdt charges, flash usdt developer, flash usdt discord, flash usdt dubai, does flash usdt exist, difference between usdt and flash usdt, flash usdt in dubai, how to detect flash usdt, what does flash usdt mean, how long does flash usdt last, flash usdt erc20, flash usdt extension, flash usdt sender extension, usdt flash que es, que es un usdt flash, what is erc20 usdt, what is usdt usd, flash usdt for sale, flash usdt free, flash usdt fiverr, flash usdt freelancer, flash usdt forum, flash usdt file, free flash usdt software, usdt flash facebook, flash usdt group, flash usdt generator github, flash usdt sender github, flash usdt software github, flash usdt là gì, get flash usdt, usdt flasher, github flash usdt, usdt flash là gì, gas fee for usdt, how flash usdt works, how to buy flash usdt, how to buy flash usdt on trust wallet, how to stop flash usdt, how to use flash usdt, how to identify flash usdt on trust wallet, flash usdt in binance, flash usdt is real, flash usdt india, flash usdt software india, flash usdt in trust wallet, flash usdt price inr, flash usdt what is it, what is flash usdt, flash usdt kya hai in hindi, flash usdt kya hota hai, how to know flash usdt, k-flash, flash usdt logo, flash usdt license key, flash usdt loan, usdt flash loan, flash usdt meaning in hindi, flash usdt miner, flash usdt meaning on binance, how to make flash usdt, usdt-m, flash usdt nedir, flash usdt needed, tether usdt to naira, flash usdt online, flash usdt on binance, flash usdt buy online, how to flash usdt on trust wallet, usdt flash o que é, online flash usdt, what is the use of flash usdt, usdt flash pro, flash usdt price in pakistan, usdt flash precio, usdt uses, price of flash usdt, 100 usd to usdt, what is q flash utility, can i send usdt to usdc, usdt qr code, q flash usb, q flash update bios, flash usdt reddit, flash usdt rate, flash usdt review, tether usdt review, flash usdt software free, flash usdt seller, flash usdt software for android, flash usdt scams, flash usdt sell, flash usdt software developer, flash usdt seller in pakistan, flash usdt smart contract, sell flash usdt, software flash usdt, flash usdt script, flash usdt tool, flash usdt transfer, flash usdt to inr, flash usdt to usd, flash usdt token, flash usdt tron, flash usdt tutorial, flash usdt trc20 withdrawal, flash usdt trc20 price, trust wallet flash usdt, trc20 flash usdt, flash usdt price today, flash usdt upwork, flash usdt uses, flash usdt vs usdt, usdt in dollar, usdt vs flash usdt, usdt to usd convert, 1 usdt to mad, flash usdt wallet, flash usdt website, what is flash usdt price, what is flash usdt binance, usdt flashing, 1 flash usdt price, 1 usd to 1 usdt, 1 usd to usdt, flash usdt trc 20, 20 usdt to usd, 5000 usdt to usd, 9x10 flash">
+    <meta name="description" content="Discover premium crypto tools and solutions for secure, efficient transactions.">
+    <meta name="keywords" content="crypto tools, blockchain, Web3, secure transactions, wallet integration">
     <meta name="robots" content="index, follow">
     
     <!-- Open Graph Meta Tags -->
@@ -85,6 +85,37 @@
             justify-items: center;
         }
 
+        .product-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 300px;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .product-card h3 {
+            margin: 15px 0;
+            font-size: 1.4em;
+        }
+
+        .product-card p {
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        .product-card .price {
+            font-size: 1.6em;
+            color: #e65c00;
+            font-weight: bold;
+        }
+
         .footer {
             text-align: center;
             padding: 20px;
@@ -98,14 +129,23 @@
     <header class="banner">
         <h1>Explore High-End Crypto Tools</h1>
         <p>Secure tools for efficient transactions.</p>
-        <button id="connect-wallet-button" class="buy-button" onclick="connectWallet()">
+        <button id="connect-wallet-button" class="buy-button">
             <i class="fas fa-wallet"></i> Connect Wallet
         </button>
         <p id="wallet-status" class="status-message"></p>
     </header>
 
     <div id="connect"></div>
-    
+
+    <main class="products-container">
+        <h2>Available Products</h2>
+        <div class="products-grid" id="products"></div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Crypto Tools Hub. All rights reserved.</p>
+    </footer>
+
     <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
     <script>
         const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
@@ -113,31 +153,52 @@
             buttonRootId: "connect"
         });
 
-        function connectWallet() {
-            tonConnectUI.connect().then(wallet => {
-                document.getElementById("wallet-status").innerText = `Wallet connected: ${wallet.name}`;
-            }).catch(error => {
-                document.getElementById("wallet-status").innerText = 'Connection failed!';
+        // Product data
+        const products = [
+            {
+                "name": "Bitcoin Flash Tool V6.5.1",
+                "price": 250.00,
+                "image": "https://storage.sell.app/store/49175/listings/hs9KNLIrVKmiqK9GExzjpk5vwbuWfV2th7Iq6YAn.jpg"
+            },
+            {
+                "name": "Flash Miner for Windows",
+                "price": 100.00,
+                "image": "https://storage.sell.app/store/49175/listings/5jHYcH7r0Pcr1Pp8yjWlSNHLdM7bl9yystNCuCQO.webp"
+            },
+            {
+                "name": "Flash USDT Full Package",
+                "price": 300.00,
+                "image": "https://storage.sell.app/store/49175/listings/kcdSyWdCFmRyYU86U7CqDyUO9oCk9JYWYzVvyXID.png"
+            }
+        ];
+
+        // Function to display products
+        function displayProducts() {
+            const productsGrid = document.getElementById("products");
+            products.forEach(product => {
+                const productCard = document.createElement("div");
+                productCard.classList.add("product-card");
+
+                productCard.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>${product.price.toFixed(2)} USD</p>
+                    <div class="price">$${product.price.toFixed(2)}</div>
+                `;
+
+                productsGrid.appendChild(productCard);
             });
         }
+
+        // Call the function to display products
+        displayProducts();
+
+        // Automatically connect wallet on page load
+        tonConnectUI.connect().then(wallet => {
+            document.getElementById("wallet-status").innerText = `Wallet connected: ${wallet.name}`;
+        }).catch(error => {
+            document.getElementById("wallet-status").innerText = 'Connection failed!';
+        });
     </script>
-
-    <main class="products-container">
-        <h2>Available Products</h2>
-        <div class="products-grid" id="products">
-            <div class="product-card">
-                <h3>Product 1</h3>
-                <p>Details about product 1</p>
-            </div>
-            <div class="product-card">
-                <h3>Product 2</h3>
-                <p>Details about product 2</p>
-            </div>
-        </div>
-    </main>
-
-    <footer class="footer">
-        <p>&copy; 2024 Crypto Tools Hub. All rights reserved.</p>
-    </footer>
 </body>
 </html>
